@@ -176,12 +176,14 @@ if img_data_1 is not None and len(img_data_1) > 0:
                     df.loc[len(df.index)] = [augmented_image, label_inputs[idx]]
                     progress_bar.progress((idx * num_augmented + j + 1) / total_iterations)
 
-            st.success("Data augmentation done")
             st.session_state.data_aug_done = True
+            st.session_state.data_aug = True
             st.session_state.data.append(st.session_state.data_aug_done)
             st.session_state.dataset = df
+            st.success("Data augmentation done")
         except Exception as e:
             st.error(f"Data augmentation error: {str(e)}")
+
 
 if st.session_state.data_aug:
     if st.session_state.data_aug_done:
